@@ -1,5 +1,6 @@
 import staticConfig from './static-config.js';
 const publicBase=new URL('./',import.meta.url);
+import { checkoutUrl, guidePrice } from './checkout.js';
 const steps=location.pathname.replace(/\/$/,'').endsWith('/guide') ? (await import(new URL('steps.js',publicBase))).steps : [];
 
 const $ = id => document.getElementById(id);
@@ -119,12 +120,8 @@ function render() {
     el('p','Соберите личную карту продвижения: от своей экспертности до первого ролика и понятного пути клиента.',card);
     el('p','Татьяна Синельникова · ИИ, автоматизация и бизнес-консалтинг\nРегина Спиридонова · креативное продюсирование, съемка и продвижение',card).className='answer muted';
     el('h2','Выберите способ доступа',card);
-    const pay=button(card,'Оплатить 1 990 ₽',()=>{
-      if(config.checkoutUrl) location.assign(config.checkoutUrl);
-      else alert('Оплата гайда за 1 990 ₽ пока не подключена.');
-    },true);
-
-    if(!config.checkoutUrl) el('p','Оплата готовится к подключению.',card);
+    button(card,'Купить гайд · '+guidePrice,()=>location.assign(checkoutUrl),true);
+    el('p','Вы перейдёте на единую страницу покупки. Доступ — 12 месяцев. Ссылка на email — в течение 24 часов после подтверждения оплаты.',card);
     el('p','Или получите гайд бесплатно через бота после подписки на «Медиамастерскую» и отдельных согласий на обработку данных и рассылку.',card);
     if(config.botUrl){
       const link=el('a','Получить бесплатно через Telegram',card);
