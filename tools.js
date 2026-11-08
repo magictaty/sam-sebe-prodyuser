@@ -1,4 +1,4 @@
-import { checkoutUrl, guidePrice } from './checkout.js';
+import { openCheckout, guidePrice } from './checkout.js';
 const referralLinks={
   ChatPlace:'https://chatplace.io/ru/?r=019fc732-13c2-708d-b771-91613fb9eb7d',
   Postmypost:'https://postmypost.io/ZDzGDK',
@@ -111,4 +111,4 @@ $('export').onclick=()=>{
 render();
 
 document.getElementById('pay-tools').textContent='Купить гайд · '+guidePrice;
-document.getElementById('pay-tools').onclick=()=>location.assign(checkoutUrl);
+document.getElementById('pay-tools').onclick=openCheckout;
